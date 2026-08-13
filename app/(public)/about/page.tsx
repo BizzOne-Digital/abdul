@@ -1,4 +1,6 @@
 import Button from '@/components/Button';
+import PageHero from '@/components/PageHero';
+import CTASection from '@/components/CTASection';
 import { Truck, Shield, Clock, MapPin, Users, Award } from 'lucide-react';
 
 export const metadata = {
@@ -9,23 +11,12 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="overflow-x-hidden w-full max-w-full">
-      {/* Hero */}
-      <section className="relative py-32 md:py-40 bg-gradient-titan text-white overflow-hidden">
-        <div className="absolute inset-0 hero-bg-highway bg-cover bg-center"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-titan-navy/95 via-titan-midnight/90 to-titan-navy/95"></div>
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-titan-blue/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-titan-blue/10 rounded-full blur-3xl"></div>
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-up">
-            <h1 className="text-5xl md:text-6xl font-display font-bold">About Titan Logistics</h1>
-            <p className="text-xl text-titan-off-white">
-              Professional freight transportation you can depend on
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        badge="About Us"
+        title="About Titan Logistics"
+        subtitle="Professional freight transportation you can depend on"
+        bgClass="hero-bg-highway"
+      />
 
       {/* Company Overview */}
       <section className="py-24 md:py-32">
@@ -34,7 +25,7 @@ export default function AboutPage() {
             <h2 className="text-4xl font-display font-bold text-titan-navy mb-6 text-center">Who We Are</h2>
             <div className="text-lg text-titan-steel leading-relaxed space-y-4">
               <p>
-                Titan Logistics LLC provides professional general freight transportation throughout the lower 48 states of the United States. We specialize in dry van, refrigerated, and flatbed transportation services, offering flexible solutions for diverse freight needs.
+                Titan Logistics LLC provides professional general freight transportation throughout the lower 48 states of the United States. We specialize in dry van, refrigerated, flatbed, and power only transportation services, offering flexible solutions for diverse freight needs.
               </p>
               <p>
                 Our commitment is to provide secure, efficient, and reliable freight transportation services with responsive 24/7 communication and professional handling of every shipment.
@@ -49,8 +40,8 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-display font-bold text-titan-navy mb-12 text-center">Our Commitment</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-white p-8 rounded-lg shadow-sm text-center hover-lift hover-glow transition-all duration-300 animate-fade-up stagger-1">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:bg-titan-blue/20">
+            <div className="card-bento p-8 text-center">
+              <div className="w-16 h-16 bg-titan-mint/50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Shield className="w-8 h-8 text-titan-blue" />
               </div>
               <h3 className="text-xl font-display font-bold text-titan-navy mb-3">Secure Transport</h3>
@@ -59,8 +50,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-sm text-center hover-lift hover-glow transition-all duration-300 animate-fade-up stagger-2">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:bg-titan-blue/20">
+            <div className="card-bento p-8 text-center">
+              <div className="w-16 h-16 bg-titan-peach/50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Clock className="w-8 h-8 text-titan-blue" />
               </div>
               <h3 className="text-xl font-display font-bold text-titan-navy mb-3">24/7 Availability</h3>
@@ -69,8 +60,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-sm text-center hover-lift hover-glow transition-all duration-300 animate-fade-up stagger-3">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:bg-titan-blue/20">
+            <div className="card-bento p-8 text-center">
+              <div className="w-16 h-16 bg-titan-orange/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Truck className="w-8 h-8 text-titan-blue" />
               </div>
               <h3 className="text-xl font-display font-bold text-titan-navy mb-3">Multiple Services</h3>
@@ -79,8 +70,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-sm text-center hover-lift hover-glow transition-all duration-300 animate-fade-up stagger-4">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:bg-titan-blue/20">
+            <div className="card-bento p-8 text-center">
+              <div className="w-16 h-16 bg-titan-mint/50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <MapPin className="w-8 h-8 text-titan-blue" />
               </div>
               <h3 className="text-xl font-display font-bold text-titan-navy mb-3">Lower 48 Coverage</h3>
@@ -89,8 +80,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-sm text-center hover-lift hover-glow transition-all duration-300 animate-fade-up stagger-5">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:bg-titan-blue/20">
+            <div className="card-bento p-8 text-center">
+              <div className="w-16 h-16 bg-titan-peach/50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-titan-blue" />
               </div>
               <h3 className="text-xl font-display font-bold text-titan-navy mb-3">Professional Team</h3>
@@ -99,8 +90,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-sm text-center hover-lift hover-glow transition-all duration-300 animate-fade-up stagger-6">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:bg-titan-blue/20">
+            <div className="card-bento p-8 text-center">
+              <div className="w-16 h-16 bg-titan-mint/50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Award className="w-8 h-8 text-titan-blue" />
               </div>
               <h3 className="text-xl font-display font-bold text-titan-navy mb-3">Quality Service</h3>
@@ -118,8 +109,8 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-display font-bold text-titan-navy mb-12 text-center">Our Services</h2>
             <div className="space-y-8">
-              <div className="flex items-start space-x-6 p-6 bg-white rounded-lg shadow-sm">
-                <div className="flex-shrink-0 w-12 h-12 bg-titan-blue rounded-lg flex items-center justify-center">
+              <div className="flex items-start space-x-6 p-6 card-bento">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-warm rounded-2xl flex items-center justify-center">
                   <Truck className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -130,8 +121,8 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="flex items-start space-x-6 p-6 bg-white rounded-lg shadow-sm">
-                <div className="flex-shrink-0 w-12 h-12 bg-titan-blue rounded-lg flex items-center justify-center">
+              <div className="flex items-start space-x-6 p-6 card-bento">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-warm rounded-2xl flex items-center justify-center">
                   <Truck className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -142,8 +133,8 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="flex items-start space-x-6 p-6 bg-white rounded-lg shadow-sm">
-                <div className="flex-shrink-0 w-12 h-12 bg-titan-blue rounded-lg flex items-center justify-center">
+              <div className="flex items-start space-x-6 p-6 card-bento">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-warm rounded-2xl flex items-center justify-center">
                   <Truck className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -153,35 +144,29 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
+
+              <div className="flex items-start space-x-6 p-6 card-bento">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-warm rounded-2xl flex items-center justify-center">
+                  <Truck className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-display font-bold text-titan-navy mb-2">Power Only</h3>
+                  <p className="text-titan-steel">
+                    Tractor-only service for hauling customer-owned trailers. Ideal for drop-and-hook operations, trailer repositioning, and flexible capacity when you supply the trailer equipment.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 md:py-32 bg-gradient-titan text-white text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
-            Ready to Work With Us?
-          </h2>
-          <p className="text-xl mb-8 text-titan-off-white max-w-2xl mx-auto">
-            Contact our dispatch team for freight quotes or to learn more about our services
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button href="/quote" variant="primary" size="lg">
-              Request a Quote
-            </Button>
-            <Button
-              href="/contact"
-              variant="outline"
-              size="lg"
-              className="bg-white/10 border-white text-white hover:bg-white hover:text-titan-navy"
-            >
-              Contact Us
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CTASection
+        title="Ready to Work With Us?"
+        description="Contact our dispatch team for freight quotes or to learn more about our services"
+        secondaryHref="/contact"
+        secondaryLabel="Contact Us"
+      />
     </div>
   );
 }

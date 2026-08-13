@@ -38,13 +38,13 @@ export async function seedDatabase(reset: boolean = false) {
       await SiteSettings.create({
         siteName: 'Titan Logistics LLC',
         tagline: 'Secure, Efficient, and Trackable Transport Services',
-        dispatchEmail: 'dispatch@titan-llc.com',
+        dispatchEmail: 'info@titan-llc.com',
         phone: '402-326-8820',
         hours: '24 hours a day, 7 days a week',
         coverageHeadline: 'Covering the Lower 48',
         coverageDescription: 'Reliable freight transportation throughout the contiguous United States.',
-        equipmentOptions: ['Dry Van', 'Refrigerated', 'Flatbed'],
-        serviceOptions: ['Dry Van', 'Refrigerated', 'Flatbed'],
+        equipmentOptions: ['Dry Van', 'Refrigerated', 'Flatbed', 'Power Only'],
+        serviceOptions: ['Dry Van', 'Refrigerated', 'Flatbed', 'Power Only'],
         commodityOptions: ['General Freight', 'Food & Beverage', 'Building Materials', 'Machinery', 'Other'],
         footerDescription: 'Titan Logistics LLC provides secure and efficient freight transportation throughout the lower 48 states.',
         copyright: '© 2026 Titan Logistics LLC. All rights reserved.',
@@ -222,6 +222,65 @@ export async function seedDatabase(reset: boolean = false) {
             seoDescription: 'Professional flatbed freight transportation for oversized and heavy loads.',
             ogImage: '/uploads/services/flatbed-og.jpg',
           }
+        },
+        {
+          title: 'Power Only',
+          slug: 'power-only',
+          shortDescription: 'Tractor-only service for hauling customer-owned trailers. Ideal for drop-and-hook, trailer repositioning, and flexible capacity.',
+          listingImage: '/uploads/services/power-only.jpg',
+          listingImageAlt: 'Semi tractor power unit on highway',
+          keyHighlights: [
+            'Drop & hook operations',
+            'Customer-owned trailers',
+            'Flexible fleet capacity',
+            'Lower 48 coverage'
+          ],
+          ctaLabel: 'Learn More',
+          displayOrder: 4,
+          isFeatured: true,
+          isPublished: true,
+          detail: {
+            heroEyebrow: 'Power Only Services',
+            heroTitle: 'Professional Power Only Transportation',
+            heroDescription: 'We provide the tractor—you provide the trailer. Flexible capacity for your logistics needs.',
+            heroImage: '/uploads/services/power-only-hero.jpg',
+            heroImageAlt: 'Power only trucking services',
+            overview: 'Our power only service supplies professional tractors to haul your trailers, perfect for shippers and brokers who own or lease trailer equipment.',
+            suitableFreight: ['Customer-owned dry van trailers', 'Customer-owned reefer trailers', 'Drop-and-hook freight', 'Trailer repositioning', 'Seasonal capacity needs'],
+            equipmentInfo: 'Late-model tractors with experienced CDL-A drivers, ready to connect to your trailers.',
+            benefits: [
+              'No trailer investment needed on our end',
+              'Drop-and-hook efficiency',
+              '24/7 dispatch support',
+              'Experienced professional drivers',
+              'Lower 48 coverage'
+            ],
+            process: [
+              'Provide trailer pickup location and details',
+              'Receive competitive power-only quote',
+              'Schedule tractor arrival',
+              'Hook up and transport your trailer',
+              'Confirm delivery or drop location'
+            ],
+            coverageInfo: 'Power only service available throughout the contiguous United States.',
+            contentSections: [],
+            gallery: [],
+            faqs: [
+              {
+                question: 'What is power only trucking?',
+                answer: 'Power only means we provide the tractor (power unit) while you provide the trailer. This is common for drop-and-hook operations and when you have your own trailer fleet.',
+                displayOrder: 1
+              },
+              {
+                question: 'What types of trailers can you pull?',
+                answer: 'We can haul standard dry van and refrigerated trailers. Contact dispatch to discuss specific trailer requirements.',
+                displayOrder: 2
+              }
+            ],
+            seoTitle: 'Power Only Trucking Services | Titan Logistics LLC',
+            seoDescription: 'Professional power only freight services—tractor supplied, your trailer hauled across the lower 48 states.',
+            ogImage: '/uploads/services/power-only-og.jpg',
+          }
         }
       ]);
       console.log('✓ Initial services created');
@@ -240,14 +299,14 @@ export async function seedDatabase(reset: boolean = false) {
         },
         {
           question: 'How do I request a freight quote?',
-          answer: 'You can request a quote by filling out our online quote form, calling our dispatch team at 402-326-8820, or emailing dispatch@titan-llc.com.',
+          answer: 'You can request a quote by filling out our online quote form, calling our dispatch team at 402-326-8820, or emailing info@titan-llc.com.',
           category: 'Quotes',
           displayOrder: 1,
           isPublished: true,
         },
         {
           question: 'What types of equipment do you offer?',
-          answer: 'We offer dry van, refrigerated, and flatbed transportation services to meet various freight requirements.',
+          answer: 'We offer dry van, refrigerated, flatbed, and power only transportation services to meet various freight requirements.',
           category: 'Equipment',
           displayOrder: 1,
           isPublished: true,

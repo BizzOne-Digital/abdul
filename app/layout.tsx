@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Barlow_Condensed } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
+import CinematicIntro from "@/components/CinematicIntro";
 
-const inter = Inter({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const barlowCondensed = Barlow_Condensed({
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  variable: "--font-barlow",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
   display: "swap",
 });
 
@@ -27,11 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth overflow-x-hidden">
+    <html lang="en" className="scroll-smooth overflow-x-clip w-full">
       <body
-        className={`${inter.variable} ${barlowCondensed.variable} font-sans antialiased bg-titan-white text-titan-navy overflow-x-hidden w-full max-w-full`}
+        className={`${jakarta.variable} font-sans antialiased bg-titan-off-white text-titan-navy overflow-x-clip w-full max-w-full`}
       >
-        <div className="overflow-x-hidden w-full max-w-full">
+        <SmoothScroll />
+        <CinematicIntro />
+        <div className="overflow-x-clip w-full max-w-full">
           {children}
         </div>
       </body>

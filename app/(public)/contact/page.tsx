@@ -1,5 +1,6 @@
 import { Mail, Phone, Clock, MapPin } from 'lucide-react';
 import Button from '@/components/Button';
+import PageHero from '@/components/PageHero';
 
 export const metadata = {
   title: 'Contact Us | Titan Logistics LLC',
@@ -9,23 +10,11 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <div className="overflow-x-hidden w-full max-w-full">
-      {/* Hero */}
-      <section className="relative py-32 md:py-40 bg-gradient-titan text-white overflow-hidden">
-        <div className="absolute inset-0 hero-bg-office bg-cover bg-center"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-titan-midnight/95 via-titan-navy/90 to-titan-blue/80"></div>
-        <div className="absolute inset-0">
-          <div className="absolute top-10 right-10 w-72 h-72 bg-titan-blue/20 rounded-full blur-3xl animate-pulse-slow"></div>
-          <div className="absolute bottom-10 left-10 w-96 h-96 bg-titan-orange/10 rounded-full blur-3xl"></div>
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-up">
-            <h1 className="text-5xl md:text-6xl font-display font-bold">Get In Touch</h1>
-            <p className="text-xl text-titan-off-white">
-              Our dispatch team is available 24/7 to assist with your freight transportation needs
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Get In Touch"
+        subtitle="Our dispatch team is available 24/7 to assist with your freight transportation needs"
+        bgClass="hero-bg-office"
+      />
 
       {/* Contact Info & Form */}
       <section className="py-24 md:py-32">
@@ -39,8 +28,8 @@ export default function ContactPage() {
               </p>
 
               <div className="space-y-6">
-                <div className="flex items-start space-x-4 p-6 bg-titan-off-white rounded-lg">
-                  <div className="flex-shrink-0 w-12 h-12 bg-titan-blue rounded-lg flex items-center justify-center">
+                <div className="flex items-start space-x-4 p-6 card-bento">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-warm rounded-2xl flex items-center justify-center">
                     <Phone className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -52,21 +41,21 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4 p-6 bg-titan-off-white rounded-lg">
-                  <div className="flex-shrink-0 w-12 h-12 bg-titan-blue rounded-lg flex items-center justify-center">
+                <div className="flex items-start space-x-4 p-6 card-bento">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-warm rounded-2xl flex items-center justify-center">
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3 className="font-display font-bold text-lg text-titan-navy mb-1">Email</h3>
-                    <a href="mailto:dispatch@titan-llc.com" className="text-titan-blue hover:underline text-lg font-semibold">
-                      dispatch@titan-llc.com
+                    <a href="mailto:info@titan-llc.com" className="text-titan-blue hover:underline text-lg font-semibold">
+                      info@titan-llc.com
                     </a>
                     <p className="text-sm text-titan-steel mt-1">We'll respond promptly</p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4 p-6 bg-titan-off-white rounded-lg">
-                  <div className="flex-shrink-0 w-12 h-12 bg-titan-blue rounded-lg flex items-center justify-center">
+                <div className="flex items-start space-x-4 p-6 card-bento">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-warm rounded-2xl flex items-center justify-center">
                     <Clock className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -76,8 +65,8 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4 p-6 bg-titan-off-white rounded-lg">
-                  <div className="flex-shrink-0 w-12 h-12 bg-titan-blue rounded-lg flex items-center justify-center">
+                <div className="flex items-start space-x-4 p-6 card-bento">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-warm rounded-2xl flex items-center justify-center">
                     <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -88,16 +77,16 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="mt-8 p-6 bg-gradient-blue rounded-lg text-white">
-                <h3 className="font-display font-bold text-xl mb-3">Need a Freight Quote?</h3>
-                <p className="mb-4">Get a custom quote for your transportation needs in minutes.</p>
+              <div className="mt-8 p-6 card-bento">
+                <h3 className="font-display font-bold text-xl text-titan-navy mb-3">Need a Freight Quote?</h3>
+                <p className="text-titan-steel mb-4">Get a custom quote for your transportation needs in minutes.</p>
                 <Button href="/quote" variant="primary">Request a Quote</Button>
               </div>
             </div>
 
             {/* Contact Form */}
             <div>
-              <div className="bg-white rounded-lg shadow-titan-lg p-8">
+              <div className="card-bento rounded-3xl p-8">
                 <h2 className="text-2xl font-display font-bold text-titan-navy mb-6">Send Us a Message</h2>
                 <form className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
@@ -106,7 +95,7 @@ export default function ContactPage() {
                       <input
                         type="text"
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-titan-blue"
+                        className="w-full px-4 py-3 border border-stone-200/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-titan-blue"
                         placeholder="Your name"
                       />
                     </div>
@@ -114,7 +103,7 @@ export default function ContactPage() {
                       <label className="block text-sm font-medium text-titan-navy mb-2">Company</label>
                       <input
                         type="text"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-titan-blue"
+                        className="w-full px-4 py-3 border border-stone-200/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-titan-blue"
                         placeholder="Company name"
                       />
                     </div>
@@ -126,7 +115,7 @@ export default function ContactPage() {
                       <input
                         type="email"
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-titan-blue"
+                        className="w-full px-4 py-3 border border-stone-200/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-titan-blue"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -134,7 +123,7 @@ export default function ContactPage() {
                       <label className="block text-sm font-medium text-titan-navy mb-2">Phone</label>
                       <input
                         type="tel"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-titan-blue"
+                        className="w-full px-4 py-3 border border-stone-200/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-titan-blue"
                         placeholder="(555) 123-4567"
                       />
                     </div>
@@ -145,7 +134,7 @@ export default function ContactPage() {
                     <input
                       type="text"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-titan-blue"
+                      className="w-full px-4 py-3 border border-stone-200/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-titan-blue"
                       placeholder="How can we help?"
                     />
                   </div>
@@ -155,7 +144,7 @@ export default function ContactPage() {
                     <textarea
                       required
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-titan-blue"
+                      className="w-full px-4 py-3 border border-stone-200/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-titan-blue"
                       placeholder="Tell us about your needs..."
                     />
                   </div>

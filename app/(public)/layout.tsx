@@ -7,9 +7,9 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="overflow-x-hidden w-full max-w-full">
+    <div className="overflow-x-clip w-full max-w-full">
       <Header />
-      <main className="pt-20 overflow-x-hidden w-full max-w-full">
+      <main className="overflow-x-clip w-full max-w-full">
         {children}
       </main>
       <Footer />

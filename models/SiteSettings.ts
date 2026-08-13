@@ -73,7 +73,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
     defaultSocialImage: { type: String, default: '/uploads/settings/og-image.jpg' },
 
     // Contact
-    dispatchEmail: { type: String, required: true, default: 'dispatch@titan-llc.com' },
+    dispatchEmail: { type: String, required: true, default: 'info@titan-llc.com' },
     phone: { type: String, required: true, default: '402-326-8820' },
     hours: { type: String, default: '24 hours a day, 7 days a week' },
     address: { type: String, default: '' },

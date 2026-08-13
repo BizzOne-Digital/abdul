@@ -8,25 +8,23 @@ export default function CinematicIntro() {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    // Check if intro has been shown in this session
     const introShown = sessionStorage.getItem('titan-intro-shown');
-    
+
     if (!introShown) {
       setShowIntro(true);
-      
-      // Animation timeline
+
       const timers = [
-        setTimeout(() => setStep(1), 500),   // Route line
-        setTimeout(() => setStep(2), 1500),  // Coverage text
-        setTimeout(() => setStep(3), 2500),  // Logo
-        setTimeout(() => setStep(4), 3500),  // Tagline
+        setTimeout(() => setStep(1), 400),
+        setTimeout(() => setStep(2), 1200),
+        setTimeout(() => setStep(3), 2000),
+        setTimeout(() => setStep(4), 2800),
         setTimeout(() => {
           setShowIntro(false);
           sessionStorage.setItem('titan-intro-shown', 'true');
-        }, 5000),
+        }, 4200),
       ];
 
-      return () => timers.forEach(timer => clearTimeout(timer));
+      return () => timers.forEach((timer) => clearTimeout(timer));
     }
   }, []);
 
@@ -41,72 +39,59 @@ export default function CinematicIntro() {
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[9999] bg-titan-midnight flex items-center justify-center"
+        exit={{ opacity: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }}
+        className="fixed inset-0 z-[9999] bg-titan-midnight flex items-center justify-center overflow-hidden"
       >
-        {/* Skip Button */}
+        <div className="absolute inset-0 bg-hero-sunset bg-cover bg-center opacity-30" />
+        <div className="absolute inset-0 bg-titan-midnight/80" />
+
         <button
           onClick={skipIntro}
-          className="absolute top-8 right-8 text-white/60 hover:text-white transition-colors text-sm"
+          className="absolute top-8 right-8 text-white/60 hover:text-titan-orange transition-colors text-sm font-medium px-4 py-2 rounded-lg border border-white/20"
           aria-label="Skip intro"
         >
-          Skip Intro →
+          Skip →
         </button>
 
-        {/* Animation Content */}
-        <div className="relative w-full max-w-2xl px-8 text-center">
-          {/* Step 1: Route Line */}
+        <div className="relative w-full max-w-md px-8 text-center">
           {step >= 1 && (
             <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="h-1 bg-gradient-to-r from-transparent via-titan-blue to-transparent mb-12 origin-left"
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="h-px w-32 mx-auto mb-10 bg-gradient-to-r from-transparent via-titan-orange to-transparent"
             />
           )}
 
-          {/* Step 2: Coverage Text */}
           {step >= 2 && (
-            <motion.div
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-8"
+              className="text-titan-orange text-xs font-bold tracking-[0.2em] uppercase mb-8"
             >
-              <div className="text-titan-off-white text-sm tracking-widest uppercase">
-                Covering the Lower 48
-              </div>
-            </motion.div>
+              Covering the Lower 48
+            </motion.p>
           )}
 
-          {/* Step 3: Logo/Brand */}
           {step >= 3 && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="mb-8"
+              transition={{ type: 'spring', stiffness: 200 }}
+              className="mb-6 flex justify-center"
             >
-              <div className="text-7xl md:text-8xl font-display font-bold text-white mb-4">
-                TITAN
-              </div>
-              <div className="text-xl text-titan-steel tracking-wide">
-                LOGISTICS LLC
-              </div>
+              <img src="/logo-white.png" alt="Titan Logistics LLC" width={180} height={190} className="object-contain h-auto w-[180px] mix-blend-screen" />
             </motion.div>
           )}
 
-          {/* Step 4: Tagline */}
           {step >= 4 && (
-            <motion.div
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              className="text-xl font-display text-white"
             >
-              <div className="text-2xl text-white font-display">
-                Secure. Efficient. Trackable.
-              </div>
-            </motion.div>
+              Secure. Efficient. <span className="text-titan-orange">Trackable.</span>
+            </motion.p>
           )}
         </div>
       </motion.div>

@@ -9,11 +9,11 @@ export default function QuoteSuccessPage({
   const requestNumber = searchParams.requestNumber || 'PENDING';
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-titan-off-white py-24 md:py-32">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-hero py-24 md:py-32">
       <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-titan-lg p-8 md:p-12 text-center">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="w-12 h-12 text-green-600" />
+        <div className="max-w-2xl mx-auto card-bento rounded-3xl p-8 md:p-12 text-center">
+          <div className="w-20 h-20 bg-titan-mint/50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="w-12 h-12 text-titan-blue" />
           </div>
           
           <h1 className="text-4xl font-display font-bold text-titan-navy mb-4">
@@ -24,7 +24,7 @@ export default function QuoteSuccessPage({
             Thank you for your freight quote request. Our dispatch team will review your information and contact you shortly.
           </p>
 
-          <div className="bg-titan-off-white rounded-lg p-6 mb-8">
+          <div className="bg-titan-off-white rounded-2xl p-6 mb-8">
             <p className="text-sm text-titan-steel mb-2">Your Request Number</p>
             <p className="text-3xl font-display font-bold text-titan-navy">{requestNumber}</p>
             <p className="text-sm text-titan-steel mt-2">
@@ -32,21 +32,21 @@ export default function QuoteSuccessPage({
             </p>
           </div>
 
-          <div className="border-t border-gray-200 pt-6 mb-6">
+          <div className="border-t border-stone-200/60 pt-6 mb-6">
             <h2 className="font-display font-bold text-xl text-titan-navy mb-4">
               What Happens Next?
             </h2>
             <div className="space-y-4 text-left max-w-md mx-auto">
               <div className="flex items-start space-x-3">
-                <span className="flex-shrink-0 w-6 h-6 bg-titan-blue text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                <span className="flex-shrink-0 w-8 h-8 bg-gradient-warm rounded-2xl flex items-center justify-center text-white text-sm font-bold">1</span>
                 <p className="text-titan-steel">Our dispatch team reviews your shipment details</p>
               </div>
               <div className="flex items-start space-x-3">
-                <span className="flex-shrink-0 w-6 h-6 bg-titan-blue text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                <span className="flex-shrink-0 w-8 h-8 bg-gradient-warm rounded-2xl flex items-center justify-center text-white text-sm font-bold">2</span>
                 <p className="text-titan-steel">We prepare a competitive quote for your freight</p>
               </div>
               <div className="flex items-start space-x-3">
-                <span className="flex-shrink-0 w-6 h-6 bg-titan-blue text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                <span className="flex-shrink-0 w-8 h-8 bg-gradient-warm rounded-2xl flex items-center justify-center text-white text-sm font-bold">3</span>
                 <p className="text-titan-steel">A representative contacts you via your preferred method</p>
               </div>
             </div>

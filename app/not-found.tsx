@@ -1,11 +1,12 @@
-import Link from 'next/link';
 import Button from '@/components/Button';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-titan-off-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto text-center">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-hero relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-mesh" />
+      <div className="absolute inset-0 dot-pattern opacity-40" />
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-2xl mx-auto card-bento rounded-3xl p-8 md:p-12 text-center">
           <div className="text-9xl font-display font-bold text-titan-navy opacity-20 mb-4">404</div>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-titan-navy mb-4">
             Page Not Found

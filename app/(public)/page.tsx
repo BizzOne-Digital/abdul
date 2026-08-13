@@ -1,507 +1,370 @@
+'use client';
+
 import Button from '@/components/Button';
-import { Truck, Thermometer, Package, Shield, Clock, MapPin, Phone, CheckCircle } from 'lucide-react';
-import Link from 'next/link';
+import ScrollReveal, { ScrollRevealGroup, ScrollRevealItem } from '@/components/ScrollReveal';
+import ServicesScrollSlider from '@/components/ServicesScrollSlider';
+import { Truck, Package, Shield, Clock, MapPin, Phone, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const quickLinks = [
+  { emoji: '📦', title: 'I Need to Ship Freight', desc: 'Get a custom quote for your transportation needs', href: '/quote', cta: 'Request Quote' },
+  { emoji: '🤝', title: "I'm a Broker", desc: 'Partner with us for reliable capacity', href: '/quote', cta: 'Get Started' },
+  { emoji: '🚛', title: "I'm a CDL A Driver", desc: 'Join our team of professional drivers', href: '/drivers', cta: 'View Opportunities' },
+];
+
+const services = [
+  {
+    num: '01',
+    title: 'Dry Van Transportation',
+    category: 'General Freight',
+    desc: 'Secure enclosed transportation for general freight and palletized goods with full weather protection.',
+    features: ['Protected from elements', 'Palletized freight ideal', "53' standard trailers"],
+    bg: 'bg-cargo',
+    href: '/services/dry-van',
+    imageLeft: true,
+  },
+  {
+    num: '02',
+    title: 'Refrigerated Transport',
+    category: 'Temperature Controlled',
+    desc: 'Temperature-controlled transport for perishables, food, pharmaceuticals, and climate-sensitive freight.',
+    features: ['Temperature monitoring', 'Food-grade compliance', 'Perishable goods safe'],
+    bg: 'bg-shipping-containers',
+    href: '/services/refrigerated',
+    imageLeft: false,
+  },
+  {
+    num: '03',
+    title: 'Flatbed Solutions',
+    category: 'Oversized & Heavy',
+    desc: 'Open-deck hauling for oversized, heavy, or uniquely shaped freight with professional securement.',
+    features: ['Oversized loads', 'Heavy equipment', 'Professional securement'],
+    bg: 'bg-loading-dock',
+    href: '/services/flatbed',
+    imageLeft: true,
+  },
+  {
+    num: '04',
+    title: 'Power Only',
+    category: 'Tractor Service',
+    desc: 'We provide the tractor—you provide the trailer. Perfect for drop-and-hook and trailer repositioning.',
+    features: ['Drop & hook ready', 'Customer-owned trailers', 'Flexible fleet capacity'],
+    bg: 'bg-interstate',
+    href: '/services/power-only',
+    imageLeft: false,
+  },
+];
+
+const whyUs = [
+  { icon: Shield, title: 'Secure Transportation', desc: 'Professional handling and secure transport of your freight from pickup to delivery with full cargo insurance.' },
+  { icon: Clock, title: '24/7 Dispatch Support', desc: 'Round-the-clock availability with responsive dispatch team ready to support your transportation needs anytime.' },
+  { icon: MapPin, title: 'Lower 48 Coverage', desc: 'Comprehensive service throughout all contiguous United States with reliable pickup and delivery schedules.' },
+  { icon: Truck, title: 'Modern Equipment', desc: 'Well-maintained trucks and trailers with GPS tracking for reliable transportation and real-time visibility.' },
+  { icon: CheckCircle, title: 'Professional Drivers', desc: 'Experienced CDL-A drivers with clean safety records and commitment to on-time, damage-free deliveries.' },
+  { icon: Phone, title: 'Responsive Communication', desc: 'Clear, timely updates throughout the shipping process with dedicated support for questions and concerns.' },
+];
+
+const steps = [
+  { num: '01', title: 'Request a Quote', desc: 'Fill out our simple quote form with your freight details, pickup location, and delivery destination.' },
+  { num: '02', title: 'Get Competitive Pricing', desc: 'Our dispatch team reviews your needs and provides a competitive quote with transparent pricing.' },
+  { num: '03', title: 'Schedule Pickup', desc: 'Once approved, we schedule pickup at your convenience and assign a professional driver to your load.' },
+  { num: '04', title: 'Track & Deliver', desc: 'Monitor your shipment with real-time updates and receive confirmation upon safe delivery.' },
+];
 
 export default function HomePage() {
   return (
-    <div className="overflow-x-hidden w-full max-w-full">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-titan text-white overflow-hidden">
-        <div className="absolute inset-0 hero-bg-truck bg-cover bg-center"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-titan-midnight/90 via-titan-navy/85 to-titan-blue/70"></div>
-        
-        {/* Animated Gradient Orbs */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-titan-blue/20 rounded-full blur-3xl animate-pulse-slow"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-titan-orange/15 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-titan-blue/15 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
-        </div>
-        
-        {/* Hexagonal Pattern Overlay */}
-        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M30 0l25.98 15v30L30 60 4.02 45V15z\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'1\'/%3E%3C/svg%3E")' }}></div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <div className="max-w-4xl mx-auto space-y-6 animate-fade-up">
-            <div className="inline-block px-4 py-1 bg-titan-blue/20 border border-titan-blue/40 rounded-full text-sm font-semibold mb-4">
-              Available 24/7 • Lower 48 Coverage
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-bold leading-tight break-words">
-              Secure, Efficient, and Trackable Transport Services
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-titan-off-white max-w-2xl mx-auto break-words">
-              General freight transportation across the lower 48 states, specializing in dry van, refrigerated, and flatbed solutions.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
+    <div className="overflow-x-clip w-full max-w-full">
+      {/* Hero — mockup layout with sunset truck background */}
+      <section className="relative min-h-screen flex flex-col justify-end overflow-x-clip max-w-full">
+        {/* Background image */}
+        <div className="absolute inset-0 bg-hero-sunset bg-cover bg-center bg-no-repeat" />
+        {/* Dark gradient overlay — text readable on left */}
+        <div className="absolute inset-0 bg-gradient-to-r from-titan-midnight/95 via-titan-navy/70 to-titan-navy/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-titan-midnight/60 via-transparent to-transparent" />
+
+        <div className="container mx-auto px-4 relative z-10 pt-[120px] md:pt-[148px] pb-10 md:pb-16 flex-1 flex flex-col justify-center max-w-full">
+          <div className="max-w-2xl">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-titan-orange text-xs sm:text-sm font-bold tracking-[0.2em] uppercase mb-5"
+            >
+              Reliable Freight. Real-Time Visibility.
+            </motion.p>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] font-display font-bold text-white leading-[1.08] tracking-tight mb-6"
+            >
+              Freight That Moves Your Business Forward.
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="text-base sm:text-lg text-white/75 leading-relaxed mb-8 max-w-xl"
+            >
+              Secure, efficient transportation across the lower 48—backed by 24/7 dispatch and dependable delivery.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-4 mb-12 md:mb-16"
+            >
               <Button href="/quote" variant="primary" size="lg">
-                Request a Freight Quote
+                Get a Freight Quote
               </Button>
-              <Button href="/services" variant="outline" size="lg" className="bg-white/10 border-white text-white hover:bg-white hover:text-titan-navy">
-                Explore Our Services
+              <Button href="/services" variant="hero-ghost" size="lg">
+                Explore Services
               </Button>
-            </div>
-            <div className="pt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-sm">
-              <div>
-                <div className="font-display text-2xl font-bold">24/7</div>
-                <div className="text-titan-off-white">Dispatch Available</div>
-              </div>
-              <div className="h-12 w-px bg-white/30"></div>
-              <div>
-                <div className="font-display text-2xl font-bold">48</div>
-                <div className="text-titan-off-white">States Covered</div>
-              </div>
-              <div className="h-12 w-px bg-white/30"></div>
-              <div>
-                <div className="font-display text-2xl font-bold">3</div>
-                <div className="text-titan-off-white">Service Types</div>
-              </div>
-            </div>
+            </motion.div>
           </div>
+
+          {/* Bottom feature row */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="flex flex-wrap gap-6 sm:gap-10 pt-6 border-t border-white/10"
+          >
+            {[
+              { icon: Clock, label: '24/7 Dispatch' },
+              { icon: MapPin, label: '48 States Covered' },
+              { icon: Package, label: 'Dry Van • Reefer • Flatbed • Power Only' },
+            ].map(({ icon: Icon, label }) => (
+              <div key={label} className="flex items-center gap-2.5">
+                <Icon className="w-4 h-4 text-titan-orange shrink-0" />
+                <span className="text-sm text-white/80 font-medium">{label}</span>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* Quick Info */}
-      <section className="py-24 md:py-32 bg-titan-off-white">
+      {/* Marquee strip */}
+      <div className="py-4 bg-titan-navy border-y border-white/5 overflow-x-clip max-w-full">
+        <div className="flex animate-marquee whitespace-nowrap w-max">
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="flex items-center gap-12 px-6">
+              {['Dry Van', 'Refrigerated', 'Flatbed', 'Power Only', '24/7 Dispatch', 'Lower 48 States', 'GPS Tracking', 'Professional Drivers'].map((item) => (
+                <span key={item} className="text-sm font-semibold text-white/60 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-titan-orange" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Quick Info - Bento Grid */}
+      <section className="py-24 md:py-32 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-titan-navy mb-4">
+          <ScrollReveal className="text-center mb-16">
+            <span className="section-pill mb-4">Get Started</span>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-titan-navy mt-4 mb-4">
               Your Freight Solution Starts Here
             </h2>
             <p className="text-lg text-titan-steel max-w-2xl mx-auto">
-              Whether you're shipping, brokering, or driving, we have the right solution for you
+              Whether you&apos;re shipping, brokering, or driving, we have the right solution for you
             </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-lg shadow-titan text-center hover:shadow-titan-lg hover-lift transition-all duration-300 animate-fade-up stagger-1">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-300 hover:scale-110 hover:bg-titan-blue/20">
-                <span className="text-3xl">📦</span>
-              </div>
-              <h3 className="text-xl font-display font-bold mb-2">I Need to Ship Freight</h3>
-              <p className="text-titan-steel mb-4">Get a custom quote for your transportation needs</p>
-              <Button href="/quote" variant="primary">Request Quote</Button>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow-titan text-center hover:shadow-titan-lg hover-lift transition-all duration-300 animate-fade-up stagger-2">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-300 hover:scale-110 hover:bg-titan-blue/20">
-                <span className="text-3xl">🤝</span>
-              </div>
-              <h3 className="text-xl font-display font-bold mb-2">I'm a Broker</h3>
-              <p className="text-titan-steel mb-4">Partner with us for reliable capacity</p>
-              <Button href="/quote" variant="primary">Get Started</Button>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow-titan text-center hover:shadow-titan-lg hover-lift transition-all duration-300 animate-fade-up stagger-3">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-300 hover:scale-110 hover:bg-titan-blue/20">
-                <span className="text-3xl">🚛</span>
-              </div>
-              <h3 className="text-xl font-display font-bold mb-2">I'm a CDL A Driver</h3>
-              <p className="text-titan-steel mb-4">Join our team of professional drivers</p>
-              <Button href="/drivers" variant="primary">View Opportunities</Button>
-            </div>
-          </div>
+          </ScrollReveal>
+
+          <ScrollRevealGroup className="grid md:grid-cols-3 gap-6">
+            {quickLinks.map((item, i) => (
+              <ScrollRevealItem key={item.title}>
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  className="card-bento p-8 text-center h-full group relative overflow-hidden"
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                    i === 0 ? 'from-titan-orange/5 to-titan-peach/10' :
+                    i === 1 ? 'from-titan-blue/5 to-titan-mint/10' :
+                    'from-titan-amber/5 to-titan-orange/10'
+                  }`} />
+                  <div className="relative">
+                    <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-300">{item.emoji}</div>
+                    <h3 className="text-xl font-display font-bold mb-2 text-titan-navy">{item.title}</h3>
+                    <p className="text-titan-steel mb-6 text-sm leading-relaxed">{item.desc}</p>
+                    <Button href={item.href} variant="primary" size="sm">{item.cta}</Button>
+                  </div>
+                </motion.div>
+              </ScrollRevealItem>
+            ))}
+          </ScrollRevealGroup>
         </div>
       </section>
 
-      {/* Our Services */}
-      <section className="py-24 md:py-32">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-titan-navy mb-4">
-              Transportation Solutions
-            </h2>
-            <p className="text-lg text-titan-steel max-w-2xl mx-auto">
-              Professional freight services across the lower 48 states with 24/7 dispatch support
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Dry Van */}
-            <div className="group bg-white rounded-lg shadow-titan hover:shadow-titan-lg transition-all duration-500 overflow-hidden hover-lift animate-fade-up stagger-1">
-              <div className="h-64 bg-gradient-titan relative overflow-hidden">
-                <div className="absolute inset-0 bg-cargo bg-cover bg-center opacity-30"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Truck className="w-20 h-20 text-white" />
-                </div>
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-display font-bold text-titan-navy mb-3">
-                  Dry Van Transportation
-                </h3>
-                <p className="text-titan-steel mb-6">
-                  Secure enclosed trailer transportation for general freight and temperature-sensitive goods. Perfect for palletized freight with weather protection.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center text-sm text-titan-steel">
-                    <CheckCircle className="w-5 h-5 text-titan-blue mr-2 flex-shrink-0" />
-                    Protected from elements
-                  </li>
-                  <li className="flex items-center text-sm text-titan-steel">
-                    <CheckCircle className="w-5 h-5 text-titan-blue mr-2 flex-shrink-0" />
-                    Palletized freight ideal
-                  </li>
-                  <li className="flex items-center text-sm text-titan-steel">
-                    <CheckCircle className="w-5 h-5 text-titan-blue mr-2 flex-shrink-0" />
-                    53' standard trailers
-                  </li>
-                </ul>
-                <Link
-                  href="/services"
-                  className="text-titan-blue hover:text-titan-navy font-semibold inline-flex items-center group/link"
-                >
-                  Learn More
-                  <span className="ml-2 group-hover/link:translate-x-1 transition-transform">→</span>
-                </Link>
-              </div>
-            </div>
-
-            {/* Refrigerated */}
-            <div className="group bg-white rounded-lg shadow-titan hover:shadow-titan-lg transition-all duration-500 overflow-hidden hover-lift animate-fade-up stagger-2">
-              <div className="h-64 bg-gradient-blue relative overflow-hidden">
-                <div className="absolute inset-0 bg-shipping-containers bg-cover bg-center opacity-30"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Thermometer className="w-20 h-20 text-white" />
-                </div>
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-display font-bold text-titan-navy mb-3">
-                  Refrigerated Transport
-                </h3>
-                <p className="text-titan-steel mb-6">
-                  Temperature-controlled transportation for perishables requiring precise climate management. Food, pharmaceuticals, and sensitive goods.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center text-sm text-titan-steel">
-                    <CheckCircle className="w-5 h-5 text-titan-blue mr-2 flex-shrink-0" />
-                    Temperature monitoring
-                  </li>
-                  <li className="flex items-center text-sm text-titan-steel">
-                    <CheckCircle className="w-5 h-5 text-titan-blue mr-2 flex-shrink-0" />
-                    Food-grade compliance
-                  </li>
-                  <li className="flex items-center text-sm text-titan-steel">
-                    <CheckCircle className="w-5 h-5 text-titan-blue mr-2 flex-shrink-0" />
-                    Perishable goods safe
-                  </li>
-                </ul>
-                <Link
-                  href="/services"
-                  className="text-titan-blue hover:text-titan-navy font-semibold inline-flex items-center group/link"
-                >
-                  Learn More
-                  <span className="ml-2 group-hover/link:translate-x-1 transition-transform">→</span>
-                </Link>
-              </div>
-            </div>
-
-            {/* Flatbed */}
-            <div className="group bg-white rounded-lg shadow-titan hover:shadow-titan-lg transition-all duration-500 overflow-hidden hover-lift animate-fade-up stagger-3">
-              <div className="h-64 bg-gradient-titan relative overflow-hidden">
-                <div className="absolute inset-0 bg-loading-dock bg-cover bg-center opacity-30"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Package className="w-20 h-20 text-white" />
-                </div>
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-display font-bold text-titan-navy mb-3">
-                  Flatbed Solutions
-                </h3>
-                <p className="text-titan-steel mb-6">
-                  Open-deck transportation for oversized, heavy, or uniquely shaped freight. Construction equipment, steel, machinery, and large components.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center text-sm text-titan-steel">
-                    <CheckCircle className="w-5 h-5 text-titan-blue mr-2 flex-shrink-0" />
-                    Oversized loads
-                  </li>
-                  <li className="flex items-center text-sm text-titan-steel">
-                    <CheckCircle className="w-5 h-5 text-titan-blue mr-2 flex-shrink-0" />
-                    Heavy equipment
-                  </li>
-                  <li className="flex items-center text-sm text-titan-steel">
-                    <CheckCircle className="w-5 h-5 text-titan-blue mr-2 flex-shrink-0" />
-                    Professional securement
-                  </li>
-                </ul>
-                <Link
-                  href="/services"
-                  className="text-titan-blue hover:text-titan-navy font-semibold inline-flex items-center group/link"
-                >
-                  Learn More
-                  <span className="ml-2 group-hover/link:translate-x-1 transition-transform">→</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center mt-12">
-            <Button href="/services" variant="primary" size="lg">
-              View All Services
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* Services — horizontal scroll slider */}
+      <ServicesScrollSlider services={services} />
 
       {/* Why Choose Us */}
-      <section className="py-24 md:py-32 bg-titan-off-white">
+      <section className="py-24 md:py-32 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-titan-navy mb-4">
+          <ScrollReveal className="text-center mb-16">
+            <span className="section-pill mb-4">Why Titan</span>
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-titan-navy mt-4 mb-4">
               Why Choose Titan Logistics
             </h2>
             <p className="text-lg text-titan-steel max-w-2xl mx-auto">
               Professional freight transportation with reliability and service excellence
             </p>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-white p-8 rounded-lg shadow-sm hover-lift hover-glow transition-all duration-300 animate-fade-up stagger-1">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:bg-titan-blue/20">
-                <Shield className="w-8 h-8 text-titan-blue transition-transform duration-300 group-hover:rotate-12" />
-              </div>
-              <h3 className="text-xl font-display font-bold text-titan-navy mb-3">
-                Secure Transportation
-              </h3>
-              <p className="text-titan-steel">
-                Professional handling and secure transport of your freight from pickup to delivery with full cargo insurance.
-              </p>
-            </div>
+          <ScrollRevealGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {whyUs.map((item, i) => (
+              <ScrollRevealItem key={item.title}>
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  className="p-7 rounded-3xl bg-titan-off-white border border-stone-200/40 hover:border-titan-blue/20 hover:shadow-titan transition-all duration-400 h-full"
+                >
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 ${
+                    i % 3 === 0 ? 'bg-titan-peach/50' : i % 3 === 1 ? 'bg-titan-mint/50' : 'bg-titan-orange/10'
+                  }`}>
+                    <item.icon className="w-7 h-7 text-titan-blue" />
+                  </div>
+                  <h3 className="text-lg font-display font-bold text-titan-navy mb-2">{item.title}</h3>
+                  <p className="text-titan-steel text-sm leading-relaxed">{item.desc}</p>
+                </motion.div>
+              </ScrollRevealItem>
+            ))}
+          </ScrollRevealGroup>
 
-            <div className="bg-white p-8 rounded-lg shadow-sm hover-lift hover-glow transition-all duration-300 animate-fade-up stagger-2">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:bg-titan-blue/20">
-                <Clock className="w-8 h-8 text-titan-blue transition-transform duration-300 group-hover:rotate-12" />
-              </div>
-              <h3 className="text-xl font-display font-bold text-titan-navy mb-3">
-                24/7 Dispatch Support
-              </h3>
-              <p className="text-titan-steel">
-                Round-the-clock availability with responsive dispatch team ready to support your transportation needs anytime.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-lg shadow-sm hover-lift hover-glow transition-all duration-300 animate-fade-up stagger-3">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:bg-titan-blue/20">
-                <MapPin className="w-8 h-8 text-titan-blue transition-transform duration-300 group-hover:rotate-12" />
-              </div>
-              <h3 className="text-xl font-display font-bold text-titan-navy mb-3">
-                Lower 48 Coverage
-              </h3>
-              <p className="text-titan-steel">
-                Comprehensive service throughout all contiguous United States with reliable pickup and delivery schedules.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-lg shadow-sm hover-lift hover-glow transition-all duration-300 animate-fade-up stagger-4">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:bg-titan-blue/20">
-                <Truck className="w-8 h-8 text-titan-blue transition-transform duration-300 group-hover:rotate-12" />
-              </div>
-              <h3 className="text-xl font-display font-bold text-titan-navy mb-3">
-                Modern Equipment
-              </h3>
-              <p className="text-titan-steel">
-                Well-maintained trucks and trailers with GPS tracking for reliable transportation and real-time visibility.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-lg shadow-sm hover-lift hover-glow transition-all duration-300 animate-fade-up stagger-5">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:bg-titan-blue/20">
-                <CheckCircle className="w-8 h-8 text-titan-blue transition-transform duration-300 group-hover:rotate-12" />
-              </div>
-              <h3 className="text-xl font-display font-bold text-titan-navy mb-3">
-                Professional Drivers
-              </h3>
-              <p className="text-titan-steel">
-                Experienced CDL-A drivers with clean safety records and commitment to on-time, damage-free deliveries.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-lg shadow-sm hover-lift hover-glow transition-all duration-300 animate-fade-up stagger-6">
-              <div className="w-16 h-16 bg-titan-blue/10 rounded-full flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:bg-titan-blue/20">
-                <Phone className="w-8 h-8 text-titan-blue transition-transform duration-300 group-hover:rotate-12" />
-              </div>
-              <h3 className="text-xl font-display font-bold text-titan-navy mb-3">
-                Responsive Communication
-              </h3>
-              <p className="text-titan-steel">
-                Clear, timely updates throughout the shipping process with dedicated support for questions and concerns.
-              </p>
-            </div>
-          </div>
-
-          <div className="text-center mt-12">
-            <Button href="/about" variant="outline" size="lg">
-              Learn More About Us
-            </Button>
-          </div>
+          <ScrollReveal className="text-center mt-12">
+            <Button href="/about" variant="outline" size="lg">Learn More About Us</Button>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* Coverage Area */}
-      <section className="py-24 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 hero-bg-map bg-cover bg-center opacity-5"></div>
+      {/* Coverage */}
+      <section className="py-24 md:py-32 bg-titan-off-white relative overflow-hidden">
+        <div className="absolute inset-0 hero-bg-map bg-cover bg-center opacity-[0.04]" />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-4xl md:text-5xl font-display font-bold text-titan-navy mb-6">
-                  Coast to Coast Coverage
-                </h2>
-                <p className="text-lg text-titan-steel mb-8">
-                  Titan Logistics provides professional freight transportation throughout the lower 48 states. From the East Coast to the West Coast, from the Gulf to the Great Lakes, we deliver your freight safely and on time.
-                </p>
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start">
-                    <CheckCircle className="w-6 h-6 text-titan-blue mr-3 flex-shrink-0 mt-1" />
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <ScrollReveal direction="left">
+              <span className="section-pill mb-4">Nationwide</span>
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-titan-navy mt-4 mb-6">
+                Coast to Coast Coverage
+              </h2>
+              <p className="text-lg text-titan-steel mb-8 leading-relaxed">
+                Titan Logistics provides professional freight transportation throughout the lower 48 states. From the East Coast to the West Coast, from the Gulf to the Great Lakes, we deliver your freight safely and on time.
+              </p>
+              <div className="space-y-5 mb-8">
+                {[
+                  { title: 'All Contiguous States', desc: 'Complete coverage across the lower 48 United States' },
+                  { title: 'Major Routes & Lanes', desc: 'Efficient routing on primary interstate highways and regional routes' },
+                  { title: 'Flexible Scheduling', desc: 'Pickup and delivery scheduled to meet your business needs' },
+                ].map((item) => (
+                  <div key={item.title} className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-titan-mint/60 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-4 h-4 text-titan-blue" />
+                    </div>
                     <div>
-                      <h4 className="font-display font-bold text-titan-navy mb-1">All Contiguous States</h4>
-                      <p className="text-titan-steel">Complete coverage across the lower 48 United States</p>
+                      <h4 className="font-display font-bold text-titan-navy mb-0.5">{item.title}</h4>
+                      <p className="text-titan-steel text-sm">{item.desc}</p>
                     </div>
                   </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="w-6 h-6 text-titan-blue mr-3 flex-shrink-0 mt-1" />
-                    <div>
-                      <h4 className="font-display font-bold text-titan-navy mb-1">Major Routes & Lanes</h4>
-                      <p className="text-titan-steel">Efficient routing on primary interstate highways and regional routes</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="w-6 h-6 text-titan-blue mr-3 flex-shrink-0 mt-1" />
-                    <div>
-                      <h4 className="font-display font-bold text-titan-navy mb-1">Flexible Scheduling</h4>
-                      <p className="text-titan-steel">Pickup and delivery scheduled to meet your business needs</p>
-                    </div>
-                  </div>
-                </div>
-                <Button href="/coverage" variant="primary" size="lg">
-                  View Coverage Details
-                </Button>
+                ))}
               </div>
+              <Button href="/coverage" variant="primary" size="lg">View Coverage Details</Button>
+            </ScrollReveal>
 
-              <div className="bg-gradient-titan p-8 rounded-lg text-white">
-                <div className="text-center">
-                  <div className="text-7xl font-display font-bold mb-4">48</div>
-                  <p className="text-2xl font-display mb-8">States Covered</p>
-                  
-                  <div className="grid grid-cols-2 gap-6 text-left">
-                    <div>
-                      <div className="text-3xl font-display font-bold mb-2">24/7</div>
-                      <p className="text-titan-off-white text-sm">Dispatch Available</p>
-                    </div>
-                    <div>
-                      <div className="text-3xl font-display font-bold mb-2">3</div>
-                      <p className="text-titan-off-white text-sm">Service Types</p>
-                    </div>
-                    <div>
-                      <div className="text-3xl font-display font-bold mb-2">100%</div>
-                      <p className="text-titan-off-white text-sm">Lower 48 Coverage</p>
-                    </div>
-                    <div>
-                      <div className="text-3xl font-display font-bold mb-2">∞</div>
-                      <p className="text-titan-off-white text-sm">Routes Available</p>
+            <ScrollReveal direction="right">
+              <div className="relative rounded-4xl overflow-hidden shadow-titan-lg border border-titan-navy/10">
+                <div className="bg-titan-navy p-10 md:p-12 text-white relative">
+                  <div className="absolute inset-0 bg-hero-sunset bg-cover bg-center opacity-20" />
+                  <div className="absolute inset-0 bg-titan-navy/85" />
+                  <div className="relative text-center">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
+                      className="text-8xl font-display font-bold mb-2"
+                    >
+                      48
+                    </motion.div>
+                    <p className="text-2xl font-display mb-10 opacity-90">States Covered</p>
+                    <div className="grid grid-cols-2 gap-6 text-left">
+                      {[
+                        { val: '24/7', label: 'Dispatch Available' },
+                        { val: '4', label: 'Service Types' },
+                        { val: '100%', label: 'Lower 48 Coverage' },
+                        { val: '∞', label: 'Routes Available' },
+                      ].map((stat) => (
+                        <div key={stat.label} className="glass-card rounded-2xl p-4 !bg-white/15 !border-white/20">
+                          <div className="text-2xl font-display font-bold">{stat.val}</div>
+                          <p className="text-white/80 text-xs mt-1">{stat.label}</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="py-24 md:py-32 bg-titan-off-white">
+      <section className="py-24 md:py-32 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-titan-navy mb-4">
+          <ScrollReveal className="text-center mb-16">
+            <span className="section-pill mb-4">Process</span>
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-titan-navy mt-4 mb-4">
               Simple Shipping Process
             </h2>
             <p className="text-lg text-titan-steel max-w-2xl mx-auto">
               Get your freight moving in four easy steps
             </p>
-          </div>
+          </ScrollReveal>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white p-8 rounded-lg shadow-sm hover-lift transition-all duration-300 animate-fade-up stagger-1">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-titan text-white rounded-lg flex items-center justify-center font-display font-bold text-xl transition-transform duration-300 hover:scale-110 hover:rotate-6">
-                    1
+          <ScrollRevealGroup className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
+            {steps.map((step, i) => (
+              <ScrollRevealItem key={step.num}>
+                <motion.div
+                  whileHover={{ x: 4 }}
+                  className="flex items-start gap-5 p-7 rounded-3xl bg-titan-off-white border border-stone-200/40 hover:border-titan-blue/25 hover:shadow-soft transition-all duration-300"
+                >
+                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-warm text-white flex items-center justify-center font-display font-bold text-lg shadow-glow-coral">
+                    {step.num}
                   </div>
                   <div>
-                    <h3 className="text-xl font-display font-bold text-titan-navy mb-2">
-                      Request a Quote
-                    </h3>
-                    <p className="text-titan-steel">
-                      Fill out our simple quote form with your freight details, pickup location, and delivery destination.
-                    </p>
+                    <h3 className="text-xl font-display font-bold text-titan-navy mb-2">{step.title}</h3>
+                    <p className="text-titan-steel text-sm leading-relaxed">{step.desc}</p>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </ScrollRevealItem>
+            ))}
+          </ScrollRevealGroup>
 
-              <div className="bg-white p-8 rounded-lg shadow-sm hover-lift transition-all duration-300 animate-fade-up stagger-2">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-titan text-white rounded-lg flex items-center justify-center font-display font-bold text-xl transition-transform duration-300 hover:scale-110 hover:rotate-6">
-                    2
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-display font-bold text-titan-navy mb-2">
-                      Get Competitive Pricing
-                    </h3>
-                    <p className="text-titan-steel">
-                      Our dispatch team reviews your needs and provides a competitive quote with transparent pricing.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white p-8 rounded-lg shadow-sm hover-lift transition-all duration-300 animate-fade-up stagger-3">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-titan text-white rounded-lg flex items-center justify-center font-display font-bold text-xl transition-transform duration-300 hover:scale-110 hover:rotate-6">
-                    3
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-display font-bold text-titan-navy mb-2">
-                      Schedule Pickup
-                    </h3>
-                    <p className="text-titan-steel">
-                      Once approved, we schedule pickup at your convenience and assign a professional driver to your load.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white p-8 rounded-lg shadow-sm hover-lift transition-all duration-300 animate-fade-up stagger-4">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-titan text-white rounded-lg flex items-center justify-center font-display font-bold text-xl transition-transform duration-300 hover:scale-110 hover:rotate-6">
-                    4
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-display font-bold text-titan-navy mb-2">
-                      Track & Deliver
-                    </h3>
-                    <p className="text-titan-steel">
-                      Monitor your shipment with real-time updates and receive confirmation upon safe delivery.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center mt-12">
-            <Button href="/quote" variant="primary" size="lg">
-              Start Your Shipment Now
-            </Button>
-          </div>
+          <ScrollReveal className="text-center mt-12">
+            <Button href="/quote" variant="primary" size="lg">Start Your Shipment Now</Button>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 md:py-32 bg-gradient-titan text-white text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
-            Ready to Ship Your Freight?
-          </h2>
-          <p className="text-xl mb-8 text-titan-off-white">
-            Contact our dispatch team 24/7 at <a href="tel:402-326-8820" className="font-bold hover:underline">402-326-8820</a>
-          </p>
-          <Button href="/quote" variant="primary" size="lg">
-            Request a Quote Now
-          </Button>
+      {/* CTA */}
+      <section className="py-24 md:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-hero-sunset bg-cover bg-center" />
+        <div className="absolute inset-0 bg-gradient-to-r from-titan-midnight/95 via-titan-navy/80 to-titan-navy/60" />
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <ScrollReveal>
+            <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-6">
+              Ready to Ship Your Freight?
+            </h2>
+            <p className="text-xl mb-10 text-white/70 max-w-xl mx-auto">
+              Contact our dispatch team 24/7 at{' '}
+              <a href="tel:402-326-8820" className="font-bold text-titan-orange hover:underline">402-326-8820</a>
+            </p>
+            <Button href="/quote" variant="primary" size="lg">Request a Quote Now</Button>
+          </ScrollReveal>
         </div>
       </section>
     </div>
