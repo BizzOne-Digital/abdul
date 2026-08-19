@@ -4,7 +4,16 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: '/:file(hero-truck|logo-white|logo|service-1|service-dry-van|service-refrigerated|service-power-only|gallery-hero).:ext(png|jpg|jpeg|webp|avif)',
+        source: '/:file(hero-truck|logo-white|logo|gallery-hero).:ext(png|jpg|jpeg|webp|avif)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      {
+        source: '/services/:path*',
         headers: [
           {
             key: 'Cache-Control',

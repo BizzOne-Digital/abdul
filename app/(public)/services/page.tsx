@@ -1,5 +1,5 @@
 import Button from '@/components/Button';
-import { SITE_IMAGES } from '@/lib/assets';
+import { SERVICE_LISTING_IMAGES } from '@/lib/assets';
 import PageHero from '@/components/PageHero';
 import CTASection from '@/components/CTASection';
 import ServicesAlternatingSections from '@/components/ServicesAlternatingSections';
@@ -35,7 +35,7 @@ export default async function ServicesPage() {
         badge="Our Services"
         title="Transportation Solutions for Every Need"
         subtitle="Four professional freight services across the lower 48 states"
-        heroImage={SITE_IMAGES.serviceDryVan}
+        heroImage={SERVICE_LISTING_IMAGES['dry-van']}
       />
 
       <ServicesAlternatingSections services={servicesData} />

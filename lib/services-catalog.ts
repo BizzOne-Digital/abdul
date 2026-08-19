@@ -33,13 +33,24 @@ export type ServiceFull = {
 
 import {
   SERVICE_IMAGES,
+  SERVICE_LISTING_IMAGES,
+  SERVICE_HERO_IMAGES,
   SITE_IMAGES,
   assetUrl,
   isSeedUploadPath,
   resolveServiceImage,
+  type ServiceImagePurpose,
 } from '@/lib/assets';
 
-export { SERVICE_IMAGES, SITE_IMAGES, assetUrl, resolveServiceImage };
+export {
+  SERVICE_IMAGES,
+  SERVICE_LISTING_IMAGES,
+  SERVICE_HERO_IMAGES,
+  SITE_IMAGES,
+  assetUrl,
+  resolveServiceImage,
+  type ServiceImagePurpose,
+};
 
 export const SERVICE_ORDER = ['dry-van', 'refrigerated', 'flatbed', 'power-only'] as const;
 
@@ -58,6 +69,7 @@ export const SERVICE_DETAILS: ServiceFull[] = [
     ],
     displayOrder: 1,
     detail: {
+      heroImage: SERVICE_HERO_IMAGES['dry-van'],
       heroEyebrow: 'Dry Van Services',
       heroTitle: 'Reliable Dry Van Transportation',
       heroDescription:
@@ -131,6 +143,7 @@ export const SERVICE_DETAILS: ServiceFull[] = [
     ],
     displayOrder: 2,
     detail: {
+      heroImage: SERVICE_HERO_IMAGES.refrigerated,
       heroEyebrow: 'Refrigerated Services',
       heroTitle: 'Temperature-Controlled Freight Solutions',
       heroDescription:
@@ -204,6 +217,7 @@ export const SERVICE_DETAILS: ServiceFull[] = [
     ],
     displayOrder: 3,
     detail: {
+      heroImage: SERVICE_HERO_IMAGES.flatbed,
       heroEyebrow: 'Flatbed Services',
       heroTitle: 'Specialized Flatbed Transportation',
       heroDescription:
@@ -277,6 +291,7 @@ export const SERVICE_DETAILS: ServiceFull[] = [
     ],
     displayOrder: 4,
     detail: {
+      heroImage: SERVICE_HERO_IMAGES['power-only'],
       heroEyebrow: 'Power Only Services',
       heroTitle: 'Professional Power Only Transportation',
       heroDescription:
@@ -351,7 +366,7 @@ export const DEFAULT_SERVICES: ServiceListing[] = SERVICE_DETAILS.map(
     listingImageAlt,
     keyHighlights,
     displayOrder,
-    listingImage: SERVICE_IMAGES[slug],
+    listingImage: SERVICE_LISTING_IMAGES[slug],
   })
 );
 
@@ -359,9 +374,10 @@ export const DEFAULT_SERVICES: ServiceListing[] = SERVICE_DETAILS.map(
 export function getServiceImage(
   slug: string,
   listingImage?: string,
-  heroImage?: string
+  heroImage?: string,
+  purpose: ServiceImagePurpose = 'listing'
 ): string {
-  return resolveServiceImage(slug, { listingImage, heroImage });
+  return resolveServiceImage(slug, { listingImage, heroImage, purpose });
 }
 
 export function mergeServices(dbServices: ServiceListing[]): ServiceListing[] {
@@ -380,7 +396,14 @@ export function getServiceBySlug(slug: string, dbService?: Record<string, unknow
   const fallback = SERVICE_DETAILS.find((s) => s.slug === slug);
   if (!fallback) return null;
   if (!dbService) {
-    return { ...fallback, listingImage: SERVICE_IMAGES[fallback.slug] };
+    return {
+      ...fallback,
+      listingImage: SERVICE_LISTING_IMAGES[fallback.slug],
+      detail: {
+        ...fallback.detail,
+        heroImage: fallback.detail.heroImage ?? SERVICE_HERO_IMAGES[fallback.slug],
+      },
+    };
   }
 
   const detail = (dbService.detail as (Partial<ServiceDetailContent> & { heroImage?: string }) | undefined) ?? {};
@@ -404,8 +427,8 @@ export function getServiceBySlug(slug: string, dbService?: Record<string, unknow
       ...fallback.detail,
       ...detail,
       heroImage: isSeedUploadPath(detailHero)
-        ? undefined
-        : detailHero,
+        ? (fallback.detail.heroImage ?? SERVICE_HERO_IMAGES[slug])
+        : (detailHero || fallback.detail.heroImage || SERVICE_HERO_IMAGES[slug]),
       heroEyebrow: detail.heroEyebrow || fallback.detail.heroEyebrow,
       heroTitle: detail.heroTitle || fallback.detail.heroTitle,
       heroDescription: detail.heroDescription || fallback.detail.heroDescription,

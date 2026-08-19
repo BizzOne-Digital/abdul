@@ -3,7 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CinematicIntro from "@/components/CinematicIntro";
-import { ASSET_VERSION, SITE_IMAGES } from "@/lib/assets";
+import { ASSET_VERSION, SITE_IMAGES, SERVICE_LISTING_IMAGES } from "@/lib/assets";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -27,7 +27,7 @@ export default function RootLayout({
   const assetVars = `
     :root {
       --img-hero-truck: url('${SITE_IMAGES.heroTruck}?v=${v}');
-      --img-service-dry-van: url('${SITE_IMAGES.serviceDryVan}?v=${v}');
+      --img-service-dry-van: url('${SERVICE_LISTING_IMAGES['dry-van']}?v=${v}');
       --img-logo-white: url('${SITE_IMAGES.logoWhite}?v=${v}');
     }
   `;
