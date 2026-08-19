@@ -1,5 +1,5 @@
 /** Bump this (or NEXT_PUBLIC_ASSET_VERSION) when replacing images in /public */
-export const ASSET_VERSION = process.env.NEXT_PUBLIC_ASSET_VERSION ?? '3';
+export const ASSET_VERSION = process.env.NEXT_PUBLIC_ASSET_VERSION ?? '4';
 
 export function assetUrl(path: string): string {
   if (!path) return path;
@@ -8,15 +8,16 @@ export function assetUrl(path: string): string {
   return `${base}?v=${ASSET_VERSION}`;
 }
 
-/** Local images shipped in /public — used on live deploy */
+/** Local images shipped in /public — one unique image per service */
 export const SITE_IMAGES = {
   heroTruck: '/hero-truck.png',
   logoWhite: '/logo-white.png',
   galleryHero: '/gallery-hero.png',
-  serviceDryVan: '/service-1.png',
-  serviceRefrigerated: '/service-1.png',
-  serviceFlatbed: '/service-1.png',
-  servicePowerOnly: '/hero-truck.png',
+  serviceDryVan: '/service-dry-van.png',
+  serviceRefrigerated: '/service-refrigerated.png',
+  serviceFlatbed:
+    'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?q=80&w=1600',
+  servicePowerOnly: '/service-power-only.png',
 } as const;
 
 export const SERVICE_IMAGES: Record<string, string> = {

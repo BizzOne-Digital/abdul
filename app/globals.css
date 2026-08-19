@@ -258,7 +258,7 @@
 
   .hero-bg-sunset { background-image: var(--img-hero-truck); }
   .hero-bg-truck { background-image: var(--img-hero-truck); }
-  .hero-bg-logistics { background-image: var(--img-service-1); }
+  .hero-bg-logistics { background-image: var(--img-service-dry-van); }
   .hero-bg-highway { background-image: url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2076'); }
   .hero-bg-office { background-image: url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070'); }
   .hero-bg-clipboard { background-image: url('https://images.unsplash.com/photo-1566307893618-63863cb262cc?q=80&w=2070'); }

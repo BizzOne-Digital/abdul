@@ -27,7 +27,7 @@ export default function RootLayout({
   const assetVars = `
     :root {
       --img-hero-truck: url('${SITE_IMAGES.heroTruck}?v=${v}');
-      --img-service-1: url('${SITE_IMAGES.serviceDryVan}?v=${v}');
+      --img-service-dry-van: url('${SITE_IMAGES.serviceDryVan}?v=${v}');
       --img-logo-white: url('${SITE_IMAGES.logoWhite}?v=${v}');
     }
   `;
