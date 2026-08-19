@@ -1,4 +1,5 @@
 import Button from '@/components/Button';
+import { SITE_IMAGES } from '@/lib/assets';
 import PageHero from '@/components/PageHero';
 import CTASection from '@/components/CTASection';
 import ServicesAlternatingSections from '@/components/ServicesAlternatingSections';
@@ -15,10 +16,11 @@ export default async function ServicesPage() {
     .exec();
 
   const dbServices: ServiceListing[] = JSON.parse(JSON.stringify(services)).map(
-    (service: ServiceListing) => ({
+    (service: ServiceListing & { listingImage?: string }) => ({
       slug: service.slug,
       title: service.title,
       shortDescription: service.shortDescription,
+      listingImage: service.listingImage,
       listingImageAlt: service.listingImageAlt,
       keyHighlights: service.keyHighlights,
       displayOrder: service.displayOrder,
@@ -33,7 +35,7 @@ export default async function ServicesPage() {
         badge="Our Services"
         title="Transportation Solutions for Every Need"
         subtitle="Four professional freight services across the lower 48 states"
-        bgClass="hero-bg-logistics"
+        heroImage={SITE_IMAGES.serviceDryVan}
       />
 
       <ServicesAlternatingSections services={servicesData} />

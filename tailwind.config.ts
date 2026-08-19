@@ -43,7 +43,7 @@ const config: Config = {
         'gradient-warm': 'linear-gradient(135deg, #F5A623 0%, #E8940A 100%)',
         'gradient-hero': 'linear-gradient(160deg, #0F1A2E 0%, #1a2744 100%)',
         'gradient-mesh': 'radial-gradient(at 20% 50%, rgba(245, 166, 35, 0.08) 0px, transparent 50%), radial-gradient(at 80% 20%, rgba(30, 58, 95, 0.3) 0px, transparent 50%)',
-        'hero-sunset': "url('/hero-truck.png')",
+        'hero-sunset': 'var(--img-hero-truck)',
       },
       borderRadius: {
         '4xl': '2rem',

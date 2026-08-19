@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
+import { assetUrl } from '@/lib/assets';
 
 interface PageHeroProps {
   title: string;
@@ -31,7 +32,7 @@ export default function PageHero({
         <>
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${heroImage})` }}
+            style={{ backgroundImage: `url(${assetUrl(heroImage)})` }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-titan-midnight/95 via-titan-navy/85 to-titan-navy/70" />
         </>

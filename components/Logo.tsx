@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { assetUrl } from '@/lib/assets';
 
 interface LogoProps {
   className?: string;
@@ -16,7 +17,7 @@ export default function Logo({
   const image = (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/logo-white.png"
+      src={assetUrl('/logo-white.png')}
       alt="Titan Logistics LLC"
       height={height}
       style={{

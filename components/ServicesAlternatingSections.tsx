@@ -14,7 +14,7 @@ export default function ServicesAlternatingSections({ services }: Props) {
     <div>
       {services.map((service, index) => {
         const imageLeft = index % 2 === 0;
-        const image = getServiceImage(service.slug);
+        const image = getServiceImage(service.slug, service.listingImage);
         const num = String(index + 1).padStart(2, '0');
 
         return (

@@ -24,18 +24,22 @@ export type ServiceFull = {
   slug: string;
   title: string;
   shortDescription: string;
+  listingImage?: string;
   listingImageAlt: string;
   keyHighlights: string[];
   displayOrder: number;
-  detail: ServiceDetailContent;
+  detail: ServiceDetailContent & { heroImage?: string };
 };
 
-export const SERVICE_IMAGES: Record<string, string> = {
-  'dry-van': 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1600',
-  refrigerated: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1600',
-  flatbed: 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?q=80&w=1600',
-  'power-only': 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1600',
-};
+import {
+  SERVICE_IMAGES,
+  SITE_IMAGES,
+  assetUrl,
+  isSeedUploadPath,
+  resolveServiceImage,
+} from '@/lib/assets';
+
+export { SERVICE_IMAGES, SITE_IMAGES, assetUrl, resolveServiceImage };
 
 export const SERVICE_ORDER = ['dry-van', 'refrigerated', 'flatbed', 'power-only'] as const;
 
@@ -334,10 +338,9 @@ export const SERVICE_DETAILS: ServiceFull[] = [
   },
 ];
 
-/** @deprecated use ServiceFull */
 export type ServiceListing = Pick<
   ServiceFull,
-  'slug' | 'title' | 'shortDescription' | 'listingImageAlt' | 'keyHighlights' | 'displayOrder'
+  'slug' | 'title' | 'shortDescription' | 'listingImage' | 'listingImageAlt' | 'keyHighlights' | 'displayOrder'
 >;
 
 export const DEFAULT_SERVICES: ServiceListing[] = SERVICE_DETAILS.map(
@@ -348,27 +351,40 @@ export const DEFAULT_SERVICES: ServiceListing[] = SERVICE_DETAILS.map(
     listingImageAlt,
     keyHighlights,
     displayOrder,
+    listingImage: SERVICE_IMAGES[slug],
   })
 );
 
-export function getServiceImage(slug: string, listingImage?: string) {
-  return SERVICE_IMAGES[slug] || listingImage || SERVICE_IMAGES['dry-van'];
+/** @deprecated use resolveServiceImage from @/lib/assets */
+export function getServiceImage(
+  slug: string,
+  listingImage?: string,
+  heroImage?: string
+): string {
+  return resolveServiceImage(slug, { listingImage, heroImage });
 }
 
 export function mergeServices(dbServices: ServiceListing[]): ServiceListing[] {
   return SERVICE_ORDER.map((slug) => {
     const fromDb = dbServices.find((s) => s.slug === slug);
     const fallback = DEFAULT_SERVICES.find((s) => s.slug === slug)!;
-    return fromDb ? { ...fallback, ...fromDb, slug } : fallback;
+    if (!fromDb) return fallback;
+    const listingImage = isSeedUploadPath(fromDb.listingImage)
+      ? fallback.listingImage
+      : fromDb.listingImage || fallback.listingImage;
+    return { ...fallback, ...fromDb, slug, listingImage };
   });
 }
 
 export function getServiceBySlug(slug: string, dbService?: Record<string, unknown> | null): ServiceFull | null {
   const fallback = SERVICE_DETAILS.find((s) => s.slug === slug);
   if (!fallback) return null;
-  if (!dbService) return fallback;
+  if (!dbService) {
+    return { ...fallback, listingImage: SERVICE_IMAGES[fallback.slug] };
+  }
 
-  const detail = (dbService.detail as Partial<ServiceDetailContent> | undefined) ?? {};
+  const detail = (dbService.detail as (Partial<ServiceDetailContent> & { heroImage?: string }) | undefined) ?? {};
+  const detailHero = detail.heroImage;
 
   return {
     ...fallback,
@@ -376,6 +392,9 @@ export function getServiceBySlug(slug: string, dbService?: Record<string, unknow
     title: (dbService.title as string) || fallback.title,
     shortDescription: (dbService.shortDescription as string) || fallback.shortDescription,
     listingImageAlt: (dbService.listingImageAlt as string) || fallback.listingImageAlt,
+    listingImage: isSeedUploadPath(dbService.listingImage as string | undefined)
+      ? fallback.listingImage
+      : ((dbService.listingImage as string) || fallback.listingImage),
     keyHighlights:
       Array.isArray(dbService.keyHighlights) && dbService.keyHighlights.length > 0
         ? (dbService.keyHighlights as string[])
@@ -384,6 +403,9 @@ export function getServiceBySlug(slug: string, dbService?: Record<string, unknow
     detail: {
       ...fallback.detail,
       ...detail,
+      heroImage: isSeedUploadPath(detailHero)
+        ? undefined
+        : detailHero,
       heroEyebrow: detail.heroEyebrow || fallback.detail.heroEyebrow,
       heroTitle: detail.heroTitle || fallback.detail.heroTitle,
       heroDescription: detail.heroDescription || fallback.detail.heroDescription,

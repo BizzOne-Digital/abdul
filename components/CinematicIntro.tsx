@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { assetUrl } from '@/lib/assets';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function CinematicIntro() {
@@ -80,7 +81,7 @@ export default function CinematicIntro() {
               transition={{ type: 'spring', stiffness: 200 }}
               className="mb-6 flex justify-center"
             >
-              <img src="/logo-white.png" alt="Titan Logistics LLC" width={180} height={190} className="object-contain h-auto w-[180px] mix-blend-screen" />
+              <img src={assetUrl('/logo-white.png')} alt="Titan Logistics LLC" width={180} height={190} className="object-contain h-auto w-[180px] mix-blend-screen" />
             </motion.div>
           )}
 

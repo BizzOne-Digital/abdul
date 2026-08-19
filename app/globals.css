@@ -254,11 +254,11 @@
       radial-gradient(at 20% 50%, rgba(245, 166, 35, 0.08) 0px, transparent 50%),
       radial-gradient(at 80% 20%, rgba(30, 58, 95, 0.3) 0px, transparent 50%);
   }
-  .bg-hero-sunset { background-image: url('/hero-truck.png'); }
+  .bg-hero-sunset { background-image: var(--img-hero-truck); }
 
-  .hero-bg-sunset { background-image: url('/hero-truck.png'); }
-  .hero-bg-truck { background-image: url('/hero-truck.png'); }
-  .hero-bg-logistics { background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070'); }
+  .hero-bg-sunset { background-image: var(--img-hero-truck); }
+  .hero-bg-truck { background-image: var(--img-hero-truck); }
+  .hero-bg-logistics { background-image: var(--img-service-1); }
   .hero-bg-highway { background-image: url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2076'); }
   .hero-bg-office { background-image: url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070'); }
   .hero-bg-clipboard { background-image: url('https://images.unsplash.com/photo-1566307893618-63863cb262cc?q=80&w=2070'); }

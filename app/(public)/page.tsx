@@ -3,6 +3,7 @@
 import Button from '@/components/Button';
 import ScrollReveal, { ScrollRevealGroup, ScrollRevealItem } from '@/components/ScrollReveal';
 import ServicesScrollSlider from '@/components/ServicesScrollSlider';
+import { SERVICE_IMAGES } from '@/lib/services-catalog';
 import { Truck, Package, Shield, Clock, MapPin, Phone, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -19,7 +20,7 @@ const services = [
     category: 'General Freight',
     desc: 'Secure enclosed transportation for general freight and palletized goods with full weather protection.',
     features: ['Protected from elements', 'Palletized freight ideal', "53' standard trailers"],
-    bg: 'bg-cargo',
+    image: SERVICE_IMAGES['dry-van'],
     href: '/services/dry-van',
     imageLeft: true,
   },
@@ -29,7 +30,7 @@ const services = [
     category: 'Temperature Controlled',
     desc: 'Temperature-controlled transport for perishables, food, pharmaceuticals, and climate-sensitive freight.',
     features: ['Temperature monitoring', 'Food-grade compliance', 'Perishable goods safe'],
-    bg: 'bg-shipping-containers',
+    image: SERVICE_IMAGES.refrigerated,
     href: '/services/refrigerated',
     imageLeft: false,
   },
@@ -39,7 +40,7 @@ const services = [
     category: 'Oversized & Heavy',
     desc: 'Open-deck hauling for oversized, heavy, or uniquely shaped freight with professional securement.',
     features: ['Oversized loads', 'Heavy equipment', 'Professional securement'],
-    bg: 'bg-loading-dock',
+    image: SERVICE_IMAGES.flatbed,
     href: '/services/flatbed',
     imageLeft: true,
   },
@@ -49,7 +50,7 @@ const services = [
     category: 'Tractor Service',
     desc: 'We provide the tractor—you provide the trailer. Perfect for drop-and-hook and trailer repositioning.',
     features: ['Drop & hook ready', 'Customer-owned trailers', 'Flexible fleet capacity'],
-    bg: 'bg-interstate',
+    image: SERVICE_IMAGES['power-only'],
     href: '/services/power-only',
     imageLeft: false,
   },

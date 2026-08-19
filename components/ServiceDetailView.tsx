@@ -25,7 +25,7 @@ type Props = {
 
 export default function ServiceDetailView({ service }: Props) {
   const { detail } = service;
-  const heroImage = getServiceImage(service.slug);
+  const heroImage = getServiceImage(service.slug, service.listingImage, service.detail.heroImage);
   const otherServices = SERVICE_DETAILS.filter((s) => s.slug !== service.slug);
 
   return (
@@ -259,7 +259,7 @@ export default function ServiceDetailView({ service }: Props) {
                 >
                   <div
                     className="h-32 rounded-xl bg-cover bg-center mb-4 overflow-hidden"
-                    style={{ backgroundImage: `url(${getServiceImage(other.slug)})` }}
+                    style={{ backgroundImage: `url(${getServiceImage(other.slug, other.listingImage, other.detail.heroImage)})` }}
                   />
                   <h3 className="font-display font-bold text-titan-navy mb-2 group-hover:text-titan-orange transition-colors">
                     {other.title}

@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import Button from '@/components/Button';
+import { assetUrl } from '@/lib/assets';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,7 +21,7 @@ export type ServiceSlide = {
   category: string;
   desc: string;
   features: string[];
-  bg: string;
+  image: string;
   href: string;
   imageLeft: boolean;
 };
@@ -42,7 +43,10 @@ function ServiceCard({
   return (
     <article className={`border border-white/10 overflow-hidden ${className}`}>
       <div className="grid grid-cols-1 md:grid-cols-2">
-        <div className={`relative min-h-[180px] md:min-h-[220px] ${service.bg} bg-cover bg-center`}>
+        <div
+          className="relative min-h-[180px] md:min-h-[220px] bg-cover bg-center"
+          style={{ backgroundImage: `url(${assetUrl(service.image)})` }}
+        >
           <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-titan-midnight/40 via-transparent to-transparent" />
         </div>
         <div className="bg-titan-navy flex flex-col justify-between p-5 md:p-7">
