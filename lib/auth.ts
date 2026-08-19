@@ -6,6 +6,7 @@ import dbConnect from './mongodb';
 import AdminUser from '@/models/AdminUser';
 
 export const authOptions: NextAuthConfig = {
+  trustHost: true,
   providers: [
     CredentialsProvider({
       name: 'Credentials',
