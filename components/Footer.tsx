@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Mail, Phone, Clock, ArrowUpRight } from 'lucide-react';
 import Button from './Button';
 import Logo from './Logo';
+import { CONTACT_EMAIL, CONTACT_MAILTO, CONTACT_PHONE, CONTACT_PHONE_HREF } from '@/lib/site';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -92,14 +93,14 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-titan-orange mt-1 shrink-0" />
-                <a href="tel:402-326-8820" className="text-white hover:text-titan-orange transition-colors text-sm font-semibold">
-                  402-326-8820
+                <a href={CONTACT_PHONE_HREF} className="text-white hover:text-titan-orange transition-colors text-sm font-semibold">
+                  {CONTACT_PHONE}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-titan-orange mt-1 shrink-0" />
-                <a href="mailto:info@titan-llc.com" className="text-white/55 hover:text-titan-orange transition-colors text-sm">
-                  info@titan-llc.com
+                <a href={CONTACT_MAILTO} className="text-white/55 hover:text-titan-orange transition-colors text-sm">
+                  {CONTACT_EMAIL}
                 </a>
               </li>
               <li className="flex items-start gap-3">

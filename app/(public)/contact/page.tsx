@@ -1,6 +1,8 @@
 import { Mail, Phone, Clock, MapPin } from 'lucide-react';
 import Button from '@/components/Button';
 import PageHero from '@/components/PageHero';
+import ContactForm from '@/components/ContactForm';
+import { CONTACT_EMAIL, CONTACT_MAILTO, CONTACT_PHONE, CONTACT_PHONE_HREF } from '@/lib/site';
 
 export const metadata = {
   title: 'Contact Us | Titan Logistics LLC',
@@ -34,8 +36,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-display font-bold text-lg text-titan-navy mb-1">Phone</h3>
-                    <a href="tel:402-326-8820" className="text-titan-blue hover:underline text-lg font-semibold">
-                      402-326-8820
+                    <a href={CONTACT_PHONE_HREF} className="text-titan-blue hover:underline text-lg font-semibold">
+                      {CONTACT_PHONE}
                     </a>
                     <p className="text-sm text-titan-steel mt-1">Call us anytime</p>
                   </div>
@@ -47,8 +49,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-display font-bold text-lg text-titan-navy mb-1">Email</h3>
-                    <a href="mailto:info@titan-llc.com" className="text-titan-blue hover:underline text-lg font-semibold">
-                      info@titan-llc.com
+                    <a href={CONTACT_MAILTO} className="text-titan-blue hover:underline text-lg font-semibold">
+                      {CONTACT_EMAIL}
                     </a>
                     <p className="text-sm text-titan-steel mt-1">We'll respond promptly</p>
                   </div>
@@ -84,77 +86,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Contact Form */}
-            <div>
-              <div className="card-bento rounded-3xl p-8">
-                <h2 className="text-2xl font-display font-bold text-titan-navy mb-6">Send Us a Message</h2>
-                <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-titan-navy mb-2">Name *</label>
-                      <input
-                        type="text"
-                        required
-                        className="w-full px-4 py-3 border border-stone-200/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-titan-blue"
-                        placeholder="Your name"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-titan-navy mb-2">Company</label>
-                      <input
-                        type="text"
-                        className="w-full px-4 py-3 border border-stone-200/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-titan-blue"
-                        placeholder="Company name"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-titan-navy mb-2">Email *</label>
-                      <input
-                        type="email"
-                        required
-                        className="w-full px-4 py-3 border border-stone-200/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-titan-blue"
-                        placeholder="your@email.com"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-titan-navy mb-2">Phone</label>
-                      <input
-                        type="tel"
-                        className="w-full px-4 py-3 border border-stone-200/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-titan-blue"
-                        placeholder="(555) 123-4567"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-titan-navy mb-2">Subject *</label>
-                    <input
-                      type="text"
-                      required
-                      className="w-full px-4 py-3 border border-stone-200/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-titan-blue"
-                      placeholder="How can we help?"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-titan-navy mb-2">Message *</label>
-                    <textarea
-                      required
-                      rows={5}
-                      className="w-full px-4 py-3 border border-stone-200/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-titan-blue"
-                      placeholder="Tell us about your needs..."
-                    />
-                  </div>
-
-                  <Button type="submit" variant="primary" fullWidth>
-                    Send Message
-                  </Button>
-                </form>
-              </div>
-            </div>
+            <ContactForm />
           </div>
         </div>
       </section>

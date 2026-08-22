@@ -1,11 +1,14 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { seedDatabase } from '@/lib/seed';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    // Only allow in development
+    const secret = request.nextUrl.searchParams.get('secret');
+
     if (process.env.NODE_ENV !== 'development') {
-      return NextResponse.json({ error: 'Seeding only available in development' }, { status: 403 });
+      if (!process.env.SEED_SECRET || secret !== process.env.SEED_SECRET) {
+        return NextResponse.json({ error: 'Seeding not allowed' }, { status: 403 });
+      }
     }
 
     await seedDatabase();

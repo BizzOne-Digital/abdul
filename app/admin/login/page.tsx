@@ -7,7 +7,7 @@ import Button from '@/components/Button';
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('info@titan-llc.com');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -64,7 +64,7 @@ export default function AdminLoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-titan-blue focus:border-transparent"
-              placeholder="admin@titan-llc.com"
+              placeholder="info@titan-llc.com"
             />
           </div>
 
@@ -89,12 +89,9 @@ export default function AdminLoginPage() {
         </form>
 
         <div className="mt-6 text-center text-sm text-titan-steel">
-          <p>Default credentials:</p>
-          <p className="font-mono text-xs mt-2">
-            admin@titan-llc.com / TitanAdmin2026!
-          </p>
+          <p>Admin access for Titan Logistics staff.</p>
           <p className="text-xs mt-2 text-titan-orange">
-            (Visit /api/seed to initialize database)
+            First time? Run database seed to create your admin account.
           </p>
         </div>
       </div>

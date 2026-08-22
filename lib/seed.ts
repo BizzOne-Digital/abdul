@@ -12,25 +12,23 @@ export async function seedDatabase(reset: boolean = false) {
     await dbConnect();
     console.log('Connected to MongoDB');
 
-    // Create initial admin user
-    const adminEmail = process.env.INITIAL_ADMIN_EMAIL || 'admin@titan-llc.com';
-    const adminPassword = process.env.INITIAL_ADMIN_PASSWORD || 'TitanAdmin2026!';
-    
-    const existingAdmin = await AdminUser.findOne({ email: adminEmail });
-    
-    if (!existingAdmin) {
-      const hashedPassword = await bcrypt.hash(adminPassword, 10);
-      await AdminUser.create({
+    // Create or update admin user
+    const adminEmail = (process.env.INITIAL_ADMIN_EMAIL || 'info@titan-llc.com').toLowerCase();
+    const adminPassword = process.env.INITIAL_ADMIN_PASSWORD || 'Titan@12345';
+    const hashedPassword = await bcrypt.hash(adminPassword, 10);
+
+    await AdminUser.findOneAndUpdate(
+      { email: adminEmail },
+      {
         email: adminEmail,
         password: hashedPassword,
-        name: 'Admin User',
+        name: 'Titan Admin',
         role: 'super_admin',
         isActive: true,
-      });
-      console.log('✓ Admin user created');
-    } else {
-      console.log('✓ Admin user already exists');
-    }
+      },
+      { upsert: true, new: true }
+    );
+    console.log(`✓ Admin user ready (${adminEmail})`);
 
     // Create or update site settings
     const existingSettings = await SiteSettings.findOne();
@@ -39,6 +37,8 @@ export async function seedDatabase(reset: boolean = false) {
         siteName: 'Titan Logistics LLC',
         tagline: 'Secure, Efficient, and Trackable Transport Services',
         dispatchEmail: 'info@titan-llc.com',
+        notificationEmail: 'info@titan-llc.com',
+        driverRecipientEmail: 'info@titan-llc.com',
         phone: '402-326-8820',
         hours: '24 hours a day, 7 days a week',
         coverageHeadline: 'Covering the Lower 48',
@@ -50,6 +50,16 @@ export async function seedDatabase(reset: boolean = false) {
         copyright: '© 2026 Titan Logistics LLC. All rights reserved.',
       });
       console.log('✓ Site settings created');
+    } else {
+      await SiteSettings.updateOne(
+        {},
+        {
+          dispatchEmail: 'info@titan-llc.com',
+          notificationEmail: 'info@titan-llc.com',
+          driverRecipientEmail: 'info@titan-llc.com',
+        }
+      );
+      console.log('✓ Site settings contact email updated');
     }
 
     // Create initial services
